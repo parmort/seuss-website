@@ -1,0 +1,13 @@
+doctype html
+
+html
+  head
+    title= title
+    link(rel="stylesheet" href="/css/bootstrap.min.css")
+    //- Add Custom Stylesheets Here
+    link(rel="stylesheet" href="/css/styles.css")
+  body
+    h1.text-center= title
+    .container
+      block content
+    script(src="/js/bootstrap.min.js")
