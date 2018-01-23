@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node app",
     "devstart": "nodemon app",
-    "build": "lessc ./less/*.less ./css"
   },
   "repository": {
     "type": "git",
