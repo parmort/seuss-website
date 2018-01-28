@@ -1,9 +1,7 @@
 const express = require('express');
+const fs = require('fs');
 
 const app = express();
-
-/** List
- */
 
 /* Middleware */
 
@@ -15,11 +13,22 @@ app.set('view engine', 'pug');
 app.use("/css", express.static(__dirname + "/css"));
 app.use("/js", express.static(__dirname + "/js"));
 
+/* Vars */
+const books = JSON.parse(fs.readFileSync('./books.json', 'utf-8'));
+
 /* Routes */
 
 // GET request to '/' route
-app.get('/', (req, res) => {
-  res.render('home', {title: "Temp Home"});
+app.get('/', (req, res, next) => {
+  res.render('home', {title: "Books", books: books});
+  next();
+});
+
+app.get('/:book', (req, res, next) => {
+  book = books[req.params.book];
+  title = 'Political Commentaries in "' + book.title + '"';
+  res.render('comments', {title: title, comments: book.comments});
+  next();
 });
 
 // Starting server
